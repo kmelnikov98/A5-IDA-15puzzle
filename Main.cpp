@@ -14,11 +14,14 @@ int main(void)
 	FifteenPuzzleSearch fifteenPuzzle;
 	uint64_t nodesExpanded = 0;
 	uint64_t nodesExpandedPatternDB = 0;
+	int numScrambleMoves;
 	std::vector<std::string> sol;
 	int move = 4; //some random initial value, which is not a move
 	PatternDatabase patternDB;
 
-	std::cout << "Over here" << std::endl;
+	std::cout << "Number of moves to make when scrambling the board: ";
+	std::cin >> numScrambleMoves;
+	std::cout << std::endl;
 
 	patternDB.BuildPatterns(nodesExpandedPatternDB);
 	std::cout << "Size of DB: " << nodesExpandedPatternDB << std::endl;
@@ -26,7 +29,7 @@ int main(void)
 	initialNode.PrintState();
 	initialNode.FindZeroPos();
 	std::cout << std::endl << "Scrambled Board - Initial State:" << std::endl;
- 	fifteenPuzzle.RandomizeInitialState(initialNode, 50);
+ 	fifteenPuzzle.RandomizeInitialState(initialNode, numScrambleMoves);
 	Node::State init_state = initialNode.nodeState;
 
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
